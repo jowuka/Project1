@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="css/registrazione.css">
+  <script type="text/javascript" src="js/jsregistration.js"></script>
+  <title>Registrazione</title>
+</head>
+<body>
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+                <form action="">
+                    <h2>Registrazione</h2>
+
+                    <div class="inputbox">
+                        <ion-icon name="person"></ion-icon>
+                        <input type="text" placeholder="" id="usernamejs" required>
+                        <label >Username</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" placeholder="" id="passjs" required>
+                        <label  >Email</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" placeholder=" " id="passjs2" required>
+                        <label  >Password</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" placeholder=" " id="email" required>
+                        <label  >Conferma Password</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="call"></ion-icon>
+                        <input type="number" placeholder=" " id="Tel" required>
+                        <label >Telefono</label>
+                    </div>
+                    
+                   
+                   
+                    <button onclick="Registerbutton()">Registrati</button>
+                    <div class="register">
+                        <p>Hai un account? <a href="./login">Login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
