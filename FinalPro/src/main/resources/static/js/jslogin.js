@@ -7,10 +7,12 @@ function Loginbutton() {
 	else {
 		alert("Compila tutti i campi come devono essere!!!")
 	}*/
+	
 	if (usernameReg == "" || passwordReg == ""){
 		count--;
 		}
 	if (count == 1){
+		
 	fetch('/logininfo', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },

@@ -25,10 +25,15 @@ public class Cont {
 	private static String passjs;
 	private static String email;
 	private static String tel;
+	static boolean x = false;
 	static List<Utente> arr;
 	@RequestMapping("/index")
 	public static String index() {
-		return "index.html";
+
+		if (x)
+			return "index2.html";
+		else
+			return "index.html";
 		}
 	
 	@RequestMapping("/login")
@@ -42,7 +47,7 @@ public class Cont {
 	
 	@RequestMapping("/Logch")
 	public static String Logch() throws Exception {
-		boolean x = FinalProApplication.check;
+		 x = FinalProApplication.check;
 		
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/";
