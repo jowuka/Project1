@@ -11,7 +11,6 @@ public class FinalProApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FinalProApplication.class, args);
-
 	}
 
 	public static void ConnectionDB(Utente user, int value) {
@@ -22,8 +21,8 @@ public class FinalProApplication {
 			String password = "anil1996";
 			Connection con = DriverManager.getConnection(url, username, password);
 			Statement stmt = con.createStatement();
-
 			stmt.execute("USE logincheck;");
+
 			String userN = "";
 			String userPass = "";
 			if (value == 1) {
@@ -46,11 +45,8 @@ public class FinalProApplication {
 					 userPass = rset.getString("password");
 				}
 				if (user.username.equals(userN) && user.password.equals(userPass)) {
-					Cont.method();
+					check = true;
 				}
-				
-				
-				
 			}	
 			// stmt.executeUpdate("INSERT INTO register(username, password, email, data,
 			// indirizzo, cap, city) VALUES ('"+user.username+"', '"+user.password+"','" +

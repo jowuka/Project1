@@ -14,7 +14,6 @@ function Registerbutton() {
 		count--;
 		}
 	if (count == 1){
-		alert(usernameReg + "\n" + passwordReg + "\n" + passwordcheckReg + "\n" + emailReg + "\n" + telReg)
 	fetch('/register', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
