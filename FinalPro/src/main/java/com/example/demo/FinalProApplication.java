@@ -46,7 +46,7 @@ public class FinalProApplication {
 					 userPass = rset.getString("password");
 				}
 				if (user.username.equals(userN) && user.password.equals(userPass)) {
-					Cont.gindex();
+					Cont.method();
 				}
 				
 				

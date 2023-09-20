@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class Cont {
@@ -22,10 +24,10 @@ public class Cont {
 		return "index.html";
 		}
 	
-	@PostMapping("/index")
-	public static String gindex() {
-        return "redirect:index.html";
-    }
+	@RequestMapping(value = "/redirect", method = RequestMethod.GET)
+	public static ModelAndView method() {
+	    return new ModelAndView("redirect:index");
+	}
 	@RequestMapping("/login")
 	public static String login() {
 		return "login.html";
