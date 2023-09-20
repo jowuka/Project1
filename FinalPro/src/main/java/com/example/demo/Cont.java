@@ -18,6 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+
 
 @Controller
 public class Cont {
@@ -45,7 +50,7 @@ public class Cont {
 		return "registrazione.html";
 	}
 	
-	@RequestMapping("/Logch")
+	/*@RequestMapping("/Logch")
 	public static String Logch() throws Exception {
 		 x = FinalProApplication.check;
 		
@@ -77,7 +82,48 @@ public class Cont {
 		else {
 			return "login2.html";
 		}
-	}
+	}*/
+    @GetMapping("/Logch")
+    public String mostraDati(Model model) throws Exception{
+        // Aggiungi i dati al modello
+
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String url = "jdbc:mysql://localhost:3306/";
+		String username = "root";
+		String password = "anil1996";
+		Connection con = DriverManager.getConnection(url, username, password);
+		Statement stmt = con.createStatement();
+		stmt.execute("USE logincheck;");
+		String userN = "";
+		String userPass = "";
+		String userTel = "";
+		String userEmail = "";
+			PreparedStatement stm = con.prepareStatement("select * from users where users.username = ? and users.password = ?");
+			stm.setString(1, usernamejs);
+			stm.setString(2, passjs);
+			stm.executeQuery();
+			ResultSet rset = stm.getResultSet();
+			while(rset.next()) {
+				 userN = rset.getString("username");
+				 userPass = rset.getString("password");
+				 userTel = rset.getString("tel");
+				 userEmail = rset.getString("email");
+			}
+			model.addAttribute("userName1", userN);
+			model.addAttribute("userEmail1", userEmail);
+			model.addAttribute("userTel1", userTel);
+		    x = FinalProApplication.check;
+			if (usernamejs.equals(userN) && passjs.equals(userPass)) 
+				x = true;
+			else 
+				x = false;
+		System.out.println(x);
+		if(x)
+			return "AccountPage.html";
+		else {
+			return "login2.html";
+		}
+    }
 
 
 	@PostMapping("/register")
@@ -114,7 +160,9 @@ public class Cont {
 		try {
 		usernamejs = (String)employee.get("Username");
 		passjs = (String)employee.get("Password");
-		Utente user = new Utente(usernamejs, passjs, "","");
+		email = (String)employee.get("Username");
+		tel = (String)employee.get("Password");
+		Utente user = new Utente(usernamejs, passjs, email,tel);
 		FinalProApplication.ConnectionDB(user, 2);
 		} catch(Exception e) {
 			e.printStackTrace();

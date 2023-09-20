@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+  <link rel="stylesheet" href="css/login.css">
+
+  <title>Login</title>
+</head>
+<body>
+
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+                <form action="">	
+						<h1><font color=#2d2d4a>Username or Password Wrong<br>Please Try Again...</font></h1>
+                    <h2>Login</h2>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="text" placeholder=" " required id="usernamejs">
+                        <label >Username</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" placeholder=" " required id="passjs">
+                        <label >Password</label>
+                    </div>
+                    <div class="forget">
+                        <label ><input type="checkbox">Ricordami  <a href="#">Password dimenticata?</a></label>
+                      
+                    </div>
+                    <button onclick="Loginbutton()"><a href="./Logch">Login</a></button>
+                    <div class="register">
+                        <p>Non hai un account? <a href="./registrazione">Registrati ora</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+      <script type="text/javascript" src="js/jslogin.js"></script>
+</body>
+</html>
