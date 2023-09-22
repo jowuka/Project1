@@ -33,7 +33,6 @@ public class FinalProApplication {
 				stm.setString(3, user.password);
 				stm.setString(4, user.tel);
 				stm.executeUpdate();
-				
 			} else if (value == 2) {
 				PreparedStatement stm = con.prepareStatement("select users.username, users.password from users where users.username = ? and users.password = ?");
 				stm.setString(1, user.username);

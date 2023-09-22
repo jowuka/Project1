@@ -1,21 +1,20 @@
-function Loginbutton() {
+function Forgotbutton() {
 	var usernameReg = document.getElementById("usernamejs").value;
-	var passwordReg = document.getElementById("passjs").value;
+	var emailReg = document.getElementById("email").value;
 	var count = 1;
 	/*if (usernameReg != "" && passwordReg != "" && passwordcheckReg == passwordReg && emailReg.includes("@") && dataNascitaReg != "" && indirizzoReg != "")
 		alert("Tutto ok ")
 	else {
 		alert("Compila tutti i campi come devono essere!!!")
 	}*/
-	
-	if (usernameReg == "" || passwordReg == ""){
+	if (usernameReg == "" && !emailReg.includes("@") && telReg == ""){
 		count--;
 		}
 	if (count == 1){
-	fetch('/logininfo', {
+	fetch('/jsForgot', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify({ Username: usernameReg, Password: passwordReg})
+		body: JSON.stringify({ Username: usernameReg, Email: emailReg})
 	})
 		.then(response => response.text())
 		.then(data => {

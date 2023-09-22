@@ -3,7 +3,7 @@
 <head>
     
   <link rel="stylesheet" href="css/login.css">
-
+	
   <title>Login</title>
 </head>
 <body>
@@ -11,9 +11,8 @@
     <section>
         <div class="form-box">
             <div class="form-value">
-                <form action="">	
-						<h1><font color=#840808>Username or Password Wrong<br><font color = #a1f190>------</font>Please Try Again.</font></h1>
-                    <h2>Login</h2>
+                <form action="">
+                    <h2>Password Dimenticata</h2>
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
                         <input type="text" placeholder=" " required id="usernamejs">
@@ -21,14 +20,15 @@
                     </div>
                     <div class="inputbox">
                         <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" placeholder=" " required id="passjs">
-                        <label >Password</label>
+                        <input type="text" placeholder=" " required id="email">
+                        <label >E-mail</label>
                     </div>
-                    <div class="forget">
-                        <label ><input type="checkbox">Ricordami  <a href="./ForgotPW">Password dimenticata?</a></label>
-                      
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" placeholder=" " required>
+                        <label >Pin</label>
                     </div>
-                    <button onclick="Loginbutton()"><a href="./Logch">Login</a></button>
+                    <button onclick="Forgotbutton()"><a href="./Logchx">Check PW</a></button>
                     <div class="register">
                         <p>Non hai un account? <a href="./registrazione">Registrati ora</a></p>
                     </div>
@@ -36,6 +36,7 @@
             </div>
         </div>
     </section>
-      <script type="text/javascript" src="js/jslogin.js"></script>
+      <script type="text/javascript" src="js/jsForgot.js"></script>
+      
 </body>
 </html>

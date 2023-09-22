@@ -20,6 +20,7 @@
         <a href="#" class="u-image u-logo u-image-1" data-image-width="583" data-image-height="428">
           <img src="images/Image20230919173529.png" class="u-logo-image u-logo-image-1">
         </a>
+        <a href="./indexx" class="u-btn u-button-style u-text-palette-3-dark-1 u-btn-1">LOGOUT</a>
         <div class="u-list u-list-1">
           <div class="u-repeater u-repeater-1">
             <div class="u-container-style u-list-item u-repeater-item">
@@ -47,7 +48,9 @@
                 <a href="./index#sec-4be1" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-no-left u-border-no-right u-border-no-top u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-6">CHI SIAMO</a>
               </div>
             </div>
+            
           </div>
+          
         </div>
       </div></header> 
       <section class="u-clearfix u-image u-section-1" id="sec-0896" data-image-width="1600" data-image-height="838">      
@@ -61,9 +64,6 @@
                         </div>
                         <div class="col-md-9 tit-det">
                             <h2 >Benvenut* <span th:text="${userName1}"></span></h2>
-                            <p>
-                                Ecco la tua pagina personale
-							</p>
                         </div>
                     </div>
                 </div>
@@ -73,10 +73,14 @@
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profilo</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#resume" role="tab" aria-controls="profile" aria-selected="false">Ricerca</a>
+             </li>
             </ul>
             <div class="tab-content" id="myTabContent">
+
               <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                   <div class="row no-margin home-det">
                       <div class="col-md-4 big-img">
@@ -201,27 +205,64 @@
                                       <h2>Profilo</h2>
                                 </div>
                          <div class="row exp-row">
-                             <h6>E-mail</h6>
-                             <span>aasdasd@gmail.com</span>
+                             <h6>Username</h6>
+                             <h6><span th:text="${userName1}"></span></h6>
                          </div>
                          <div class="row exp-row">
-                             <h6>Numero di telefono</h6>
-                             <span>3468906765</span>
+                             <h6>E-Mail</h6>
+                             <h6><span th:text="${userEmail1}"></span></h6>
                          </div>
                          <div class="row exp-row last">
-                             <h6>Domicilio</h6>
-                             <span>Cerignola</span>
+                             <h6>Numero di Telefono : </h6>
+                             <h6><span th:text="${userTel1}"></span></h6>
                          </div>
-                         <div class="row exp-row last">
-                            <h6>Indirizzo</h6>
-                            <span>Via San giovanni 54</span>
-                        </div>
-                        <div class="row exp-row last">
-                            <h6>Data di nascita</h6>
-                            <span>21-11-1978</span>
-                        </div>
                  </div>
+                 
             </div>
+            <div class="tab-pane fade exp-cover" id="resume" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="container mt-5">
+      <h1>Ricerca Elettrodomestici</h1>
+      <div class="row mb-3">
+          <div class="col-md-3">
+    
+              <select class="form-select" id="categoriaSelect" style="height: 37px;">
+                  <option value="Asciugatrice"><span th:text="Asciugatrice"></span></option>
+                  <option value="Boiler_elettrico"><span th:text="Boiler"></span></option>
+                  <option value="Condizionatore"><span th:text="Condizionatore"></span></option>
+                  <option value="Forni"><span th:text="Forno"></span></option>
+                  <option value="Frigorifero"><span th:text="Frigorifero"></span></option>
+                  <option value="Illuminazione"><span th:text="Illuminazione"></span></option>
+                  <option value="Lavastoviglie"><span th:text="Lavastoviglie"></span></option>
+                  <option value="Lavatrice"><span th:text="Lavatrice"></span></option>
+              </select>
+          </div>
+          
+          <div class="col-md-3">
+              <button class="btn btn-primary" onclick="searchByCategoria()"><a href="Test">Cerca</a></button>
+          </div>
+          
+      </div>
+      <table id="resultTable" class="table table-bordered">
+		  
+          <thead>
+              <tr>
+                  <th>Marca</th>
+                  <th>Modello</th>
+                  <th>Classe</th>
+                  <th>Consumo</th>
+              </tr>
+              <tr th:each="Prodotti : ${Prodotto}" id="Test">
+              <td th:text="${Prodotti.Marca}"></td>
+              <td th:text="${Prodotti.Classe}"></td>
+              <td th:text="${Prodotti.Modello}"></td>
+              <td th:text="${Prodotti.Consumo}"></td>
+            </tr>
+          </thead>
+          <tbody>
+             
+          </tbody>
+      </table>
+  </div>
         </div>
      </div>
   </div>
