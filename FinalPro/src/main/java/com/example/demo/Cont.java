@@ -5,7 +5,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -26,11 +28,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class Cont {
+
+	static String Categoria = "boiler_elettrico";
+	static String ProductID;
+	static String TableQuery = "SELECT * from "+Categoria+";";
 	private static String usernamejs;
 	private static String passjs;
 	private static String email;
 	private static String tel;
 	static boolean x = false;
+	static boolean table = false;
 	static boolean passLogin2 = true;
 	static List<Utente> arr;
 	@RequestMapping("/index")
@@ -91,6 +98,46 @@ public class Cont {
 			return "login2.html";
 		}
 	}*/
+	@RequestMapping("/tabella")
+	public static String index(Model model) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String url = "jdbc:mysql://localhost:3306/";
+		String username = "root";
+		String password = "anil1996";
+		Connection con = DriverManager.getConnection(url, username, password);
+		Statement stmt = con.createStatement();
+		stmt.execute("use progettofinale;");
+			ResultSet rset = stmt.executeQuery(TableQuery);
+			String Marca;
+			String Modello;
+			String Classe;
+			String Consumo;
+			String Productid;
+			List<Prodotti> arr = new ArrayList<>();
+			while (rset.next()) {
+				Marca = rset.getString("Marca");
+				Modello = rset.getString("Modello");
+				Classe = rset.getString("Classe");
+				Consumo = rset.getString("Consumo");
+				Productid = rset.getString("id");
+				arr.add(new Prodotti(Marca,Modello,Classe,Consumo, Productid));
+			} 
+			model.addAttribute("Prodotto", arr);
+			/*
+	        List<Forno> listaForni = new ArrayList<>();
+	        listaForni.add(new Forno("Forno 1", 200));
+	        listaForni.add(new Forno("Forno 2", 250));
+	        listaForni.add(new Forno("Forno 3", 180));
+
+	        // Aggiungi la lista di forni al modello
+	        model.addAttribute("forni", listaForni);
+			 */
+			
+
+				return "tabella.html";
+	}
+	
+	
     @GetMapping("/Logch")
     public String mostraDati(Model model) throws Exception{
         // Aggiungi i dati al modello
@@ -147,6 +194,10 @@ public class Cont {
 		else {
 			return "login2.html";
 		}
+    }
+    @GetMapping("/Logch2")
+    public String Account2(Model model) throws Exception{
+			return "AccountPage2.html";
     }
     
     @GetMapping("/Logchx")
@@ -249,6 +300,37 @@ public class Cont {
 		email = (String)employee.get("Email");
 		Utente user = new Utente(usernamejs, "", email, "");
 		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@PostMapping("/Product")
+	public void ProductEnt(@RequestBody JSONObject valoreJS) {
+		JsonProduct(valoreJS);
+	}
+
+	private static void JsonProduct(JSONObject Product) {
+		try {
+			
+			Categoria = (String) Product.get("Cat");
+			TableQuery = "SELECT * from "+Categoria+";";
+			System.out.println(Categoria);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@PostMapping("/IdProo")
+	public void IdPro(@RequestBody JSONObject valoreJS) {
+		JsonID(valoreJS);
+	}
+
+	private static void JsonID(JSONObject Product) {
+		try {
+			ProductID = (String) Product.get("IDPRO");
+			System.out.println(ProductID);
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
