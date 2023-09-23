@@ -125,7 +125,7 @@ public class Cont {
 				 userEmail = rset.getString("email");
 				 userID = rset.getInt("id");
 			}
-			model.addAttribute("prod1", 15);
+			model.addAttribute("prod1", 90);
 			model.addAttribute("prod2", 25);
 			model.addAttribute("prod3", 35);
 			model.addAttribute("prod4", 45);
@@ -299,6 +299,7 @@ public class Cont {
 			System.out.println(ProductID);
 			System.out.println(UtilizzoOra);
 			System.out.println(Categoria);
+			System.out.println("Abbiamo Cliccato bottone");
 			CaricaProdotto(ProductID,UtilizzoOra);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -319,36 +320,89 @@ public class Cont {
 		String userN = "";
 			while(rset.next()) {
 				userN = rset.getString("id");
-				System.out.println("halloo"+userN);
 		}
 			
-		switch (Categoria) {  
+		switch (Categoria) {
 		case"asciugatrice":
-			PreparedStatement stm = con.prepareStatement("insert into profilo(ID_UTENTE, ID_" + Categoria + ") VALUES(?,?);");
-			stm.setInt(1, userID);
-			stm.setInt(2, Integer.parseInt(ProductID));
-
+			PreparedStatement stm = con.prepareStatement("UPDATE progettofinale.profilo SET ID_"+Categoria+" = ? WHERE (id_profilo = ?);");
+			stm.setInt(1, Integer.parseInt(ProductID));
+			stm.setInt(2, Integer.parseInt(FinalProApplication.profiloID));
+			stm.executeUpdate();
+			PreparedStatement stmOre = con.prepareStatement("UPDATE progettofinale.ore SET ore_"+Categoria+" = ? WHERE (id_consumo = ?);");
+			stmOre.setInt(1, Integer.parseInt(UtilizzoOra));
+			stmOre.setInt(2, Integer.parseInt(FinalProApplication.OreID));
+			stmOre.executeUpdate();
 			break;
 		case"boiler_elettrico":
-			
+			PreparedStatement stm1 = con.prepareStatement("UPDATE progettofinale.profilo SET ID_"+Categoria+" = ? WHERE (id_profilo = ?);");
+			stm1.setInt(1, Integer.parseInt(ProductID));
+			stm1.setInt(2, Integer.parseInt(FinalProApplication.profiloID));
+			stm1.executeUpdate();
+			PreparedStatement stmOre1 = con.prepareStatement("UPDATE progettofinale.ore SET ore_"+Categoria+" = ? WHERE (id_consumo = ?);");
+			stmOre1.setInt(1, Integer.parseInt(UtilizzoOra));
+			stmOre1.setInt(2, Integer.parseInt(FinalProApplication.OreID));
+			stmOre1.executeUpdate();
 			break;
 		case"condizionatore":
-			
+			System.out.println("siamo qui");
+			PreparedStatement stm2 = con.prepareStatement("UPDATE progettofinale.profilo SET ID_"+Categoria+" = ? WHERE (id_profilo = ?);");
+			stm2.setInt(1, Integer.parseInt(ProductID));
+			stm2.setInt(2, Integer.parseInt(FinalProApplication.profiloID));
+			stm2.executeUpdate();
+			PreparedStatement stmOre2 = con.prepareStatement("UPDATE progettofinale.ore SET ore_"+Categoria+" = ? WHERE (id_consumo = ?);");
+			stmOre2.setInt(1, Integer.parseInt(UtilizzoOra));
+			stmOre2.setInt(2, Integer.parseInt(FinalProApplication.OreID));
+			stmOre2.executeUpdate();
 			break;
 		case"forni":
-			
+			PreparedStatement stm3 = con.prepareStatement("UPDATE progettofinale.profilo SET ID_"+Categoria+" = ? WHERE (id_profilo = ?);");
+			stm3.setInt(1, Integer.parseInt(ProductID));
+			stm3.setInt(2, Integer.parseInt(FinalProApplication.profiloID));
+			stm3.executeUpdate();
+			PreparedStatement stmOre3 = con.prepareStatement("UPDATE progettofinale.ore SET ore_"+Categoria+" = ? WHERE (id_consumo = ?);");
+			stmOre3.setInt(1, Integer.parseInt(UtilizzoOra));
+			stmOre3.setInt(2, Integer.parseInt(FinalProApplication.OreID));
+			stmOre3.executeUpdate();
 			break;
 		case"frigorifero":
-			
+			PreparedStatement stm4 = con.prepareStatement("UPDATE progettofinale.profilo SET ID_"+Categoria+" = ? WHERE (id_profilo = ?);");
+			stm4.setInt(1, Integer.parseInt(ProductID));
+			stm4.setInt(2, Integer.parseInt(FinalProApplication.profiloID));
+			stm4.executeUpdate();
+			PreparedStatement stmOre4 = con.prepareStatement("UPDATE progettofinale.ore SET ore_"+Categoria+" = ? WHERE (id_consumo = ?);");
+			stmOre4.setInt(1, Integer.parseInt(UtilizzoOra));
+			stmOre4.setInt(2, Integer.parseInt(FinalProApplication.OreID));
+			stmOre4.executeUpdate();
 			break;
 		case"illuminazione":
-			
+			PreparedStatement stm5 = con.prepareStatement("UPDATE progettofinale.profilo SET ID_"+Categoria+" = ? WHERE (id_profilo = ?);");
+			stm5.setInt(1, Integer.parseInt(ProductID));
+			stm5.setInt(2, Integer.parseInt(FinalProApplication.profiloID));
+			stm5.executeUpdate();
+			PreparedStatement stmOre5 = con.prepareStatement("UPDATE progettofinale.ore SET ore_"+Categoria+" = ? WHERE (id_consumo = ?);");
+			stmOre5.setInt(1, Integer.parseInt(UtilizzoOra));
+			stmOre5.setInt(2, Integer.parseInt(FinalProApplication.OreID));
+			stmOre5.executeUpdate();
 			break;
 		case"lavastoviglie":
-			
+			PreparedStatement stm6 = con.prepareStatement("UPDATE progettofinale.profilo SET ID_"+Categoria+" = ? WHERE (id_profilo = ?);");
+			stm6.setInt(1, Integer.parseInt(ProductID));
+			stm6.setInt(2, Integer.parseInt(FinalProApplication.profiloID));
+			stm6.executeUpdate();
+			PreparedStatement stmOre6 = con.prepareStatement("UPDATE progettofinale.ore SET ore_"+Categoria+" = ? WHERE (id_consumo = ?);");
+			stmOre6.setInt(1, Integer.parseInt(UtilizzoOra));
+			stmOre6.setInt(2, Integer.parseInt(FinalProApplication.OreID));
+			stmOre6.executeUpdate();
 			break;
 		case"lavatrice":
-			
+			PreparedStatement stm7 = con.prepareStatement("UPDATE progettofinale.profilo SET ID_"+Categoria+" = ? WHERE (id_profilo = ?);");
+			stm7.setInt(1, Integer.parseInt(ProductID));
+			stm7.setInt(2, Integer.parseInt(FinalProApplication.profiloID));
+			stm7.executeUpdate();
+			PreparedStatement stmOre7 = con.prepareStatement("UPDATE progettofinale.ore SET ore_"+Categoria+" = ? WHERE (id_consumo = ?);");
+			stmOre7.setInt(1, Integer.parseInt(UtilizzoOra));
+			stmOre7.setInt(2, Integer.parseInt(FinalProApplication.OreID));
+			stmOre7.executeUpdate();
 			break;
 		}
 	}
