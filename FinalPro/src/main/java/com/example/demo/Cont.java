@@ -29,10 +29,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class Cont {
 
-	static String Categoria = "boiler_elettrico";
+	static String Categoria = "asciugatrice";
 	static String ProductID;
-	static String TableQuery = "SELECT * from "+Categoria+";";
-	private static String usernamejs;
+	static int userID;
+	static String UtilizzoOra;
+	static String TableQuery = "SELECT * from "+Categoria+" Order by Marca;";
+	static String usernamejs;
 	private static String passjs;
 	private static String email;
 	private static String tel;
@@ -40,6 +42,8 @@ public class Cont {
 	static boolean table = false;
 	static boolean passLogin2 = true;
 	static List<Utente> arr;
+	
+	
 	@RequestMapping("/index")
 	public static String index() {
 		if (x)
@@ -47,7 +51,6 @@ public class Cont {
 		else
 			return "index.html";
 	}
-	
 	@RequestMapping("/login")
 	public static String login() {
 		return "login.html";
@@ -65,39 +68,6 @@ public class Cont {
 		return "index.html";
 	}
 	
-	/*@RequestMapping("/Logch")
-	public static String Logch() throws Exception {
-		 x = FinalProApplication.check;
-		
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		String url = "jdbc:mysql://localhost:3306/";
-		String username = "root";
-		String password = "anil1996";
-		Connection con = DriverManager.getConnection(url, username, password);
-		Statement stmt = con.createStatement();
-		stmt.execute("USE logincheck;");
-		String userN = "";
-		String userPass = "";
-			PreparedStatement stm = con.prepareStatement("select users.username, users.password from users where users.username = ? and users.password = ?");
-			stm.setString(1, usernamejs);
-			stm.setString(2, passjs);
-			stm.executeQuery();
-			ResultSet rset = stm.getResultSet();
-			while(rset.next()) {
-				 userN = rset.getString("username");
-				 userPass = rset.getString("password");
-			}
-			if (usernamejs.equals(userN) && passjs.equals(userPass)) 
-				x = true;
-			else 
-				x = false;
-		System.out.println(x);
-		if(x)
-			return "AccountPage.html";
-		else {
-			return "login2.html";
-		}
-	}*/
 	@RequestMapping("/tabella")
 	public static String index(Model model) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -123,36 +93,25 @@ public class Cont {
 				arr.add(new Prodotti(Marca,Modello,Classe,Consumo, Productid));
 			} 
 			model.addAttribute("Prodotto", arr);
-			/*
-	        List<Forno> listaForni = new ArrayList<>();
-	        listaForni.add(new Forno("Forno 1", 200));
-	        listaForni.add(new Forno("Forno 2", 250));
-	        listaForni.add(new Forno("Forno 3", 180));
-
-	        // Aggiungi la lista di forni al modello
-	        model.addAttribute("forni", listaForni);
-			 */
-			
-
 				return "tabella.html";
 	}
 	
-	
     @GetMapping("/Logch")
     public String mostraDati(Model model) throws Exception{
+    	Categoria = "asciugatrice";
         // Aggiungi i dati al modello
-
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/";
 		String username = "root";
 		String password = "anil1996";
 		Connection con = DriverManager.getConnection(url, username, password);
 		Statement stmt = con.createStatement();
-		stmt.execute("USE logincheck;");
+		stmt.execute("USE progettofinale;");
 		String userN = "";
 		String userPass = "";
 		String userTel = "";
 		String userEmail = "";
+		
 		if (passLogin2) {
 			PreparedStatement stm = con.prepareStatement("select * from users where users.username = ? and users.password = ?");
 			stm.setString(1, usernamejs);
@@ -164,7 +123,16 @@ public class Cont {
 				 userPass = rset.getString("password");
 				 userTel = rset.getString("tel");
 				 userEmail = rset.getString("email");
+				 userID = rset.getInt("id");
 			}
+			model.addAttribute("prod1", 15);
+			model.addAttribute("prod2", 25);
+			model.addAttribute("prod3", 35);
+			model.addAttribute("prod4", 45);
+			model.addAttribute("prod5", 55);
+			model.addAttribute("prod6", 65);
+			model.addAttribute("prod7", 75);
+			model.addAttribute("prod8", 85);
 			model.addAttribute("userName1", userN);
 			model.addAttribute("userEmail1", userEmail);
 			model.addAttribute("userTel1", userTel);
@@ -195,6 +163,7 @@ public class Cont {
 			return "login2.html";
 		}
     }
+    
     @GetMapping("/Logch2")
     public String Account2(Model model) throws Exception{
 			return "AccountPage2.html";
@@ -210,7 +179,7 @@ public class Cont {
 		String password = "anil1996";
 		Connection con = DriverManager.getConnection(url, username, password);
 		Statement stmt = con.createStatement();
-		stmt.execute("USE logincheck;");
+		stmt.execute("USE progettofinale;");
 		String userN = "";
 		String userTel = "";
 		String userEmail = "";
@@ -241,6 +210,7 @@ public class Cont {
 		}
     }
 
+   
 	@PostMapping("/register")
 	public void riceviValore(@RequestBody JSONObject valoreJS) {
 		JsonTransfer(valoreJS);
@@ -250,8 +220,6 @@ public class Cont {
 		else
 			System.out.println("Check Username & Pass");
 	}
-	
-	
 	private static void JsonTransfer(JSONObject employee) {
 		try {
 		usernamejs = (String)employee.get("Username");
@@ -265,12 +233,11 @@ public class Cont {
 		}
 	}
 	
+	
 	@PostMapping("/logininfo")
 	public void riceviLogin(@RequestBody JSONObject valoreJS) {
 		JsonLogin(valoreJS);
 	}
-	
-	
 	private static void JsonLogin(JSONObject employee) {
 		try {
 		usernamejs = (String)employee.get("Username");
@@ -284,6 +251,7 @@ public class Cont {
 		}
 	}
 	
+	
 	@PostMapping("/jsForgot")
 	public void jsForgot(@RequestBody JSONObject valoreJS) {
 		JsonjsForgot(valoreJS);
@@ -293,7 +261,6 @@ public class Cont {
 		else
 			System.out.println("Check Username & Pass");
 	}
-
 	private static void JsonjsForgot(JSONObject employee) {
 		try {
 		usernamejs = (String)employee.get("Username");
@@ -304,36 +271,85 @@ public class Cont {
 		}
 	}
 	
+	
 	@PostMapping("/Product")
 	public void ProductEnt(@RequestBody JSONObject valoreJS) {
 		JsonProduct(valoreJS);
 	}
-
 	private static void JsonProduct(JSONObject Product) {
 		try {
 			
 			Categoria = (String) Product.get("Cat");
-			TableQuery = "SELECT * from "+Categoria+";";
+			TableQuery = "SELECT * from "+Categoria+" Order by Marca;";
 			System.out.println(Categoria);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	@PostMapping("/IdProo")
+	
+	@PostMapping("/IdProoo")
 	public void IdPro(@RequestBody JSONObject valoreJS) {
 		JsonID(valoreJS);
 	}
-
 	private static void JsonID(JSONObject Product) {
 		try {
 			ProductID = (String) Product.get("IDPRO");
+			UtilizzoOra = (String) Product.get("Orario");
 			System.out.println(ProductID);
-			
+			System.out.println(UtilizzoOra);
+			System.out.println(Categoria);
+			CaricaProdotto(ProductID,UtilizzoOra);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
+	public static void CaricaProdotto(String prodotto, String UtilizzoOra) throws Exception{
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String url = "jdbc:mysql://localhost:3306/";
+		String username = "root";
+		String password = "anil1996";
+		Connection con = DriverManager.getConnection(url, username, password);
+		Statement stmt = con.createStatement();
+		stmt.execute("USE progettofinale;");
+		
+		stmt.executeQuery("SELECT * FROM users where username = '" + usernamejs + "';");
+		ResultSet rset = stmt.getResultSet();
+
+		String userN = "";
+			while(rset.next()) {
+				userN = rset.getString("id");
+				System.out.println("halloo"+userN);
+		}
+			
+		switch (Categoria) {  
+		case"asciugatrice":
+			PreparedStatement stm = con.prepareStatement("insert into profilo(ID_UTENTE, ID_" + Categoria + ") VALUES(?,?);");
+			stm.setInt(1, userID);
+			stm.setInt(2, Integer.parseInt(ProductID));
+
+			break;
+		case"boiler_elettrico":
+			
+			break;
+		case"condizionatore":
+			
+			break;
+		case"forni":
+			
+			break;
+		case"frigorifero":
+			
+			break;
+		case"illuminazione":
+			
+			break;
+		case"lavastoviglie":
+			
+			break;
+		case"lavatrice":
+			
+			break;
+		}
+	}
 }

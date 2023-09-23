@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" href="css/nicepage2.css" media="screen">
 <link rel="stylesheet" href="css/ecology-1.css" media="screen">
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body
@@ -65,6 +66,7 @@
                         <div class="col-md-9 tit-det">
                             <h2 >Benvenut* <span th:text="${userName1}"></span></h2>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -83,120 +85,20 @@
 
               <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                   <div class="row no-margin home-det">
-                      <div class="col-md-4 big-img">
-                         
-                          <h4 class="ltitle">Elettrodomestici</h4>
-
-                        <div class="refer-cov">
-                            
-                            <p>Username :</p>
-                            <span th:text="${userName1}"></span>
-                        </div>
-                        <div class="refer-cov">
-                           
-                            <p>E-mail:</p>
-                            <span th:text="${userEmail1}"></span>
-                        </div>
-                        <div class="refer-cov">
-                           
-                            <p>Numero di Telefono :</p>
-                            <span th:text="${userTel1}"></span>
-                        </div>
-                        
-                      </div>
-                      <div class="col-md-8 home-dat">
-                          <h2 class="rit-titl"> Consumo Casa</h2>
-                        <div class="profess-cover row no-margin">
-                            <div class="col-md-6">
-                                <div class=" prog-row row">
-                                    <div class="col-sm-6">
-                                        Frigorifero
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row prog-row">
-                                    <div class="col-sm-6">
-                                        Forno
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="row prog-row">
-                                    <div class="col-sm-6">
-                                        Lavastoviglie
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row prog-row">
-                                    <div class="col-sm-6">
-                                        Condizionatori
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                          <div class="links">
-                          <div class="row ">
-
+                      
+               <div id="prod1" th:data-value="${prod1}"></div>
+                     <div id="prod2" th:data-value="${prod2}"></div>     
+                      <div id="prod3" th:data-value="${prod3}"></div> 
+                      <div id="prod4" th:data-value="${prod4}"></div>     
+                     <div id="prod5" th:data-value="${prod5}"></div>       
+					<div id="prod6" th:data-value="${prod6}"></div>
+                       <div id="prod7" th:data-value="${prod7}"></div>    
+                          <div id="prod8" th:data-value="${prod8}"></div> 
                               
-                          </div>
-                      </div>
-                      <div class="jumbo-address">
-                         <div class="row no-margin">
-                                  <div class="col-lg-6 no-padding">
-
-                                  <table class="addrss-list">
-                                      <tbody><tr>
-                                          <th>Città</th>
-                                          <td>Bari</td>
-                                      </tr>
-                                      <tr>
-                                          <th>Utilizzo</th>
-                                          <td>Pizzeria</td>
-                                      </tr>
-                                      
-                                  </tbody></table>
-
-                          </div>
-                          <div class="col-lg-6 no-padding">
-                               <table class="addrss-list">
-                                      <tbody><tr>
-                                          <th>Via</th>
-                                          <td>Rossi 16</td>
-                                      </tr>
-                                      <tr>
-                                        <th>Ultimo aggiornamento</th>
-                                        <td>12-09-2023</td>
-                                      </tr>
-                                     
-                                  </tbody></table>
-                          </div>
-                         </div>
-
-                      </div>
-                      </div>
+         <h1 style="color: white;">Cons</h1><h1>Consumo Elettrodomestici</h1>
+        <canvas id="myChart" width="130%" height="65%"></canvas>
+                      
+                      
                   </div>
               </div>
               <div class="tab-pane fade exp-cover" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -226,14 +128,14 @@
           <div class="col-md-3">
     
               <select class="form-select" id="categoriaSelect" style="height: 38px; " >
-                  <option value="Asciugatrice"><span th:text="Asciugatrice"></span></option>
-                  <option value="Boiler_elettrico"><span th:text="Boiler"></span></option>
-                  <option value="Condizionatore"><span th:text="Condizionatore"></span></option>
-                  <option value="Forni"><span th:text="Forno"></span></option>
-                  <option value="Frigorifero"><span th:text="Frigorifero"></span></option>
-                  <option value="Illuminazione"><span th:text="Illuminazione"></span></option>
-                  <option value="Lavastoviglie"><span th:text="Lavastoviglie"></span></option>
-                  <option value="Lavatrice"><span th:text="Lavatrice"></span></option>
+                  <option value="Asciugatrice"><span th:text="Asciugatrice"     ></span></option>
+                  <option value="Boiler_elettrico"><span th:text="Boiler"       ></span></option>
+                  <option value="Condizionatore"><span th:text="Condizionatore" ></span></option>
+                  <option value="Forni"><span th:text="Forno" 					></span></option>
+                  <option value="Frigorifero"><span th:text="Frigorifero" 		></span></option>
+                  <option value="Illuminazione"><span th:text="Illuminazione"   ></span></option>
+                  <option value="Lavastoviglie"><span th:text="Lavastoviglie" 	></span></option>
+                  <option value="Lavatrice"><span th:text="Lavatrice" 			></span></option>
               </select>
           </div>
           
@@ -278,12 +180,12 @@
 
 					var idP = document.getElementById(idx).value;
 					console.log(idP);
-
+					var orario = document.getElementById("Utilizzo");
 				
 				fetch('/IdProo', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({IDPRO: idP})
+			body: JSON.stringify({IDPRO: idP, Orario: orario})
 		})
 			.then(response => response.text())
 			.then(data => {
@@ -297,7 +199,7 @@
     function searchByCategoria() {
             const categoria = document.getElementById("categoriaSelect").value;
             
-            var table = '<thead><tr><th>Marca</th><th>Modello</th><th>Classe</th><th>Consumo</th><th>Id</th></tr><tr th:each="Prodotti : ${Prodotto}"><td th:text="${Prodotti.Marca}"></td><td th:text="${Prodotti.Classe}"></td><td th:text="${Prodotti.Modello}"></td><td th:text="${Prodotti.Consumo}"></td><td ><button th:attr="onclick=|IDPro(\'${Prodotti.id}\')|" th:id="${Prodotti.id}" th:value="${Prodotti.id}" th:text = "${Prodotti.id}"></button></td></tr></thead>';
+            var table = '<thead><tr><th>Marca</th><th>Modello</th><th>Classe</th><th>Consumo</th><th>Id</th></tr><tr th:each="Prodotti : ${Prodotto}"><td th:text="${Prodotti.Marca}"></td><td th:text="${Prodotti.Classe}"></td><td th:text="${Prodotti.Modello}"></td><td th:text="${Prodotti.Consumo}"></td><td ><button th:attr="onclick=|IDPro(\'${Prodotti.id}\')|" th:id="${Prodotti.id}" th:value="${Prodotti.id}" >Seleziona</button></td></tr></thead>';
             
             
         fetch('/Product', {
@@ -318,7 +220,7 @@
 <script>
         function changeIframeSource() {
             var iframe = document.getElementById('myFrame');
-            iframe.contentWindow.location.reload();
+            iframe.contentWindow.location.reload()
         }
     </script>
 	<script>
@@ -327,4 +229,59 @@
 			changeIframeSource()
 		}
 	</script>
+	<script>
+        const Values1 = parseInt(document.getElementById("prod1").getAttribute("data-value"));
+        const Values2 = parseInt(document.getElementById("prod2").getAttribute("data-value"));
+        const Values3 = parseInt(document.getElementById("prod3").getAttribute("data-value"));
+        const Values4 = parseInt(document.getElementById("prod4").getAttribute("data-value"));
+        const Values5 = parseInt(document.getElementById("prod5").getAttribute("data-value"));
+        const Values6 = parseInt(document.getElementById("prod6").getAttribute("data-value"));
+        const Values7 = parseInt(document.getElementById("prod7").getAttribute("data-value"));
+        const Values8 = parseInt(document.getElementById("prod8").getAttribute("data-value"));
+        console.log(Values3)
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Asciugatrice', 'Boiler elettrico', 'Condizionatore', 'Forno elettrico', 'Frigorifero', 'Illuminazione', 'Lavastoviglie', 'Lavatrice'],
+                datasets: [{
+                    label: 'Consumo (kWh)',
+                    data: [Values1,Values2,Values3,Values4,Values5,Values6,Values7,Values8],
+                    backgroundColor: [
+            		calculateBackgroundColor(Values1),
+            		calculateBackgroundColor(Values2), 
+                    calculateBackgroundColor(Values3),
+                    calculateBackgroundColor(Values4),
+                    calculateBackgroundColor(Values5),
+                    calculateBackgroundColor(Values6),
+                    calculateBackgroundColor(Values7),
+                    calculateBackgroundColor(Values8),                    
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 206, 86, 1)',
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                    }
+                }
+            }
+        });
+        function calculateBackgroundColor(value) {
+        if (value > 70) {
+            return 'rgba(255, 99, 132, 0.5)'; // Red
+        } else if (value > 50) {
+            return 'rgba(255, 206, 86, 0.5)'; // Yellow
+        } else {
+            return 'rgba(75, 192, 192, 0.5)';  // Green
+        }
+    }
+    </script>
 </html>

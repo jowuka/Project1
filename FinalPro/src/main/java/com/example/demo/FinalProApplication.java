@@ -21,7 +21,7 @@ public class FinalProApplication {
 			String password = "anil1996";
 			Connection con = DriverManager.getConnection(url, username, password);
 			Statement stmt = con.createStatement();
-			stmt.execute("USE logincheck;");
+			stmt.execute("USE progettofinale;");
 
 			String userN = "";
 			String userPass = "";
@@ -33,6 +33,22 @@ public class FinalProApplication {
 				stm.setString(3, user.password);
 				stm.setString(4, user.tel);
 				stm.executeUpdate();
+				
+				stmt.executeQuery("SELECT * FROM users where username = '" + user.username + "';");
+				ResultSet rset = stmt.getResultSet();
+
+				String userID = "";
+					while(rset.next()) {
+						userID = rset.getString("id");
+				}
+				System.out.println(userID);
+				PreparedStatement stm1 = con
+						.prepareStatement("INSERT INTO profilo(id_utente) VALUES(?);");
+				stm1.setInt(1, Integer.parseInt(userID));
+				PreparedStatement stm2 = con
+						.prepareStatement("INSERT INTO profilo(id_profilo) VALUES(?);");
+				stm2.setInt(1, Integer.parseInt(userID));
+				
 			} else if (value == 2) {
 				PreparedStatement stm = con.prepareStatement("select users.username, users.password from users where users.username = ? and users.password = ?");
 				stm.setString(1, user.username);
@@ -47,13 +63,6 @@ public class FinalProApplication {
 					check = true;
 				}
 			}	
-			// stmt.executeUpdate("INSERT INTO register(username, password, email, data,
-			// indirizzo, cap, city) VALUES ('"+user.username+"', '"+user.password+"','" +
-			// user.email + "','" + user.datanascita + "','" + user.indirizzo+"','"
-			// +user.cap + "','" + user.city + "');");
-			/*
-			 * con.close(); stmt.close(); rset.close();
-			 */
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
