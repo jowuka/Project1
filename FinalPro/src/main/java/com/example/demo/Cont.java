@@ -41,6 +41,7 @@ public class Cont {
 	static boolean x = false;
 	static boolean table = false;
 	static boolean passLogin2 = true;
+	static double [] Result =  new double[8];
 	static List<Utente> arr;
 	
 	
@@ -125,14 +126,15 @@ public class Cont {
 				 userEmail = rset.getString("email");
 				 userID = rset.getInt("id");
 			}
-			model.addAttribute("prod1", 90);
-			model.addAttribute("prod2", 25);
-			model.addAttribute("prod3", 35);
-			model.addAttribute("prod4", 45);
-			model.addAttribute("prod5", 55);
-			model.addAttribute("prod6", 65);
-			model.addAttribute("prod7", 75);
-			model.addAttribute("prod8", 85);
+			InsertConsume();
+			model.addAttribute("prod1", Result[0]);
+			model.addAttribute("prod2", Result[1]);
+			model.addAttribute("prod3", Result[2]);
+			model.addAttribute("prod4", Result[3]);
+			model.addAttribute("prod5", Result[4]);
+			model.addAttribute("prod6", Result[5]);
+			model.addAttribute("prod7", Result[6]);
+			model.addAttribute("prod8", Result[7]);
 			model.addAttribute("userName1", userN);
 			model.addAttribute("userEmail1", userEmail);
 			model.addAttribute("userTel1", userTel);
@@ -157,6 +159,7 @@ public class Cont {
 				model.addAttribute("userTel1", userTel);
 			x = true;
 		}
+		
 		if(x)
 			return "AccountPage.html";
 		else {
@@ -405,5 +408,103 @@ public class Cont {
 			stmOre7.executeUpdate();
 			break;
 		}
+	}
+	public static void InsertConsume() throws Exception {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String url = "jdbc:mysql://localhost:3306/";
+		String username = "root";
+		String password = "anil1996";
+		Connection con = DriverManager.getConnection(url, username, password);
+		Statement stmt = con.createStatement();
+		stmt.execute("USE progettofinale;");
+		stmt.executeQuery("select \r\n"
+				+ "users.username as 'USERNAME UTENTE',\r\n"
+				+ "users.email as 'EMAIL UTENTE',\r\n"
+				+ "asciugatrice.consumo as 'CASCIUGATRICE',\r\n"
+				+ "ore.ore_asciugatrice as 'OASCIUGATRICE',\r\n"
+				+ "boiler_elettrico.consumo as 'Cboiler_elettrico',\r\n"
+				+ "ore.ore_boiler_elettrico as 'Oboiler_elettrico',\r\n"
+				+ "condizionatore.consumo as 'CCONDIZIONATORE',\r\n"
+				+ "ore.ore_condizionatore as 'Ocondizionatore',\r\n"
+				+ "forni.consumo as 'Cforno',\r\n"
+				+ "ore.ore_forni as 'Oforno',\r\n"
+				+ "frigorifero.consumo as 'Cfrigorifero',\r\n"
+				+ "ore.ore_frigorifero as 'Ofrigorifero',\r\n"
+				+ "illuminazione.consumo as 'Cilluminazione',\r\n"
+				+ "ore.ore_illuminazione as 'Oilluminazione',\r\n"
+				+ "lavastoviglie.consumo as 'Clavastoviglie',\r\n"
+				+ "ore.ore_lavastoviglie as 'Olavastoviglie',\r\n"
+				+ "lavatrice.consumo as 'Clavatrice',\r\n"
+				+ "ore.ore_lavatrice as 'Olavatrice'\r\n"
+				+ "from ore\r\n"
+				+ "left join profilo\r\n"
+				+ "on ore.id_profilo = profilo.id_profilo\r\n"
+				+ "left join users\r\n"
+				+ "on profilo.id_utente = users.id\r\n"
+				+ "left join asciugatrice\r\n"
+				+ "on profilo.id_asciugatrice = asciugatrice.id\r\n"
+				+ "left join boiler_elettrico\r\n"
+				+ "on profilo.id_boiler_elettrico = boiler_elettrico.id\r\n"
+				+ "left join condizionatore\r\n"
+				+ "on profilo.id_condizionatore = condizionatore.id\r\n"
+				+ "left join forni\r\n"
+				+ "on profilo.id_forni = forni.id\r\n"
+				+ "left join frigorifero\r\n"
+				+ "on profilo.id_frigorifero = frigorifero.id\r\n"
+				+ "left join illuminazione\r\n"
+				+ "on profilo.id_illuminazione = illuminazione.id\r\n"
+				+ "left join lavastoviglie\r\n"
+				+ "on profilo.id_lavastoviglie = lavastoviglie.id\r\n"
+				+ "left join lavatrice\r\n"
+				+ "on profilo.id_lavatrice = lavatrice.id\r\n"
+				+ "where id_consumo = "+ Integer.parseInt(FinalProApplication.OreID) + ";");
+		ResultSet rset = stmt.getResultSet();
+
+		double asciugatrice = 0;
+		double boiler_elettrico = 0;
+		double condizionatore = 0;
+		double forni = 0;
+		double frigorifero = 0;
+		double illuminazione = 0;
+		double lavastoviglie = 0;
+		double lavatrice = 0;
+		int OREasciugatrice = 0;
+		int OREboiler_elettrico = 0;
+		int OREcondizionatore = 0;
+		int OREforni = 0;
+		int OREfrigorifero = 0;
+		int OREilluminazione = 0;
+		int ORElavastoviglie = 0;
+		int ORElavatrice = 0;
+		
+			while(rset.next()) {
+				
+				asciugatrice = rset.getDouble("CASCIUGATRICE");
+				boiler_elettrico = rset.getDouble("Cboiler_elettrico");
+				condizionatore = rset.getDouble("CCONDIZIONATORE");
+				forni = rset.getDouble("Cforno");
+				frigorifero = rset.getDouble("Cfrigorifero");
+				illuminazione = rset.getDouble("Cilluminazione");
+				lavastoviglie = rset.getDouble("Clavastoviglie");
+				lavatrice = rset.getDouble("Clavatrice");
+				
+				OREasciugatrice = rset.getInt("OASCIUGATRICE");
+				OREboiler_elettrico = rset.getInt("Oboiler_elettrico");
+				OREcondizionatore = rset.getInt("Ocondizionatore");
+				OREforni = rset.getInt("Oforno");
+				OREfrigorifero = rset.getInt("Ofrigorifero");
+				OREilluminazione = rset.getInt("Oilluminazione");
+				ORElavastoviglie = rset.getInt("Olavastoviglie");
+				ORElavatrice = rset.getInt("Olavatrice");	
+		}
+			Result[0] = asciugatrice * OREasciugatrice;
+			Result[1] = boiler_elettrico * OREboiler_elettrico;
+			Result[2] = condizionatore * OREcondizionatore;
+			Result[3] = forni * OREforni;
+			Result[4] = frigorifero * OREfrigorifero;
+			Result[5] = illuminazione * OREilluminazione;
+			Result[6] = lavastoviglie * ORElavastoviglie;
+			Result[7] = lavatrice * ORElavatrice;
+			
 	}
 }
