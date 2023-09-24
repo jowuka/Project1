@@ -8,7 +8,7 @@ Anil Balci, Vincenzo Dibisceglia, Luigi Pagone, Mattia Piga, Edoardo Varagnolo
 
 GenEnergy è un progetto che mira ad aiutare le persone a gestire i costi energetici degli elettrodomestici di casa.
 Nel sito è possibile selezionare i tuoi elettrodomestici grazie ai dati forniti dal sito Europeo:  https://eprel.ec.europa.eu/screen/home.
-Una volta selezionati i tuoi prodotti, nella sezione profilo dell'area personale vedrai le stime del consumo di un mese grazie ad un grafico intuitivo.
+Una volta aggiunti i tuoi prodotti e le relative ore, nella sezione profilo dell'area personale vedrai le stime del consumo mensile grazie ad un grafico intuitivo.
 
 Miriamo ad implementare: 
 
