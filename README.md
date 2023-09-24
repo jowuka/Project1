@@ -1,6 +1,6 @@
 GenEnergy
 
-Progetto realizzato durante il corso di Gerneration Italy nella classe JAITA92 da: 
+Progetto realizzato durante il corso di Generation Italy nella classe JAITA92 da: 
 
 Anil Balci, Vincenzo Dibisceglia, Luigi Pagone, Mattia Piga, Edoardo Varagnolo
 
