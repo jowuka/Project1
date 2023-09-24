@@ -1,6 +1,7 @@
 GenEnergy
 
-Progetto realizzato durante il corso di Gerneration Italy nella classe JAITA92 da: Anil Balci, Vincenzo Dibisceglia, Luigi Pagone, Mattia Piga, Edoardo Varagnolo
+Progetto realizzato durante il corso di Gerneration Italy nella classe JAITA92 da: 
+Anil Balci, Vincenzo Dibisceglia, Luigi Pagone, Mattia Piga, Edoardo Varagnolo
 
 GenEnergy è un progetto che mira a aiutare le persone con gli sprechi energetici degli elettrodomistici di casa
 Nel sito è possibile selezionare i tuoi elettrodomestici grazie al sito Europeo:  https://eprel.ec.europa.eu/screen/home
