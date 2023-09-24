@@ -4,7 +4,7 @@ Progetto realizzato durante il corso di Gerneration Italy nella classe JAITA92 d
 
 GenEnergy è un progetto che mira a aiutare le persone con gli sprechi energetici degli elettrodomistici di casa
 Nel sito è possibile selezionare i tuoi elettrodomestici grazie al sito Europeo:  https://eprel.ec.europa.eu/screen/home
-una volta selezionati i tuoi elettrodomestici, nella sezione profilo dell'area personale, vedrai le stime di consumo grazie a un grafico
+una volta selezionati i tuoi elettrodomestici, nella sezione profilo dell'area personale, vedrai le stime del consumo di un mese grazie a un grafico facile da capire
 
 miriamo ad implementare: 
 Consigli relativi agli sprechi;
